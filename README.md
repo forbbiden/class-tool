@@ -502,3 +502,17 @@ java -DarchiveTypes="jar,zip" -cp class-tool.jar JarScanner /your/dir1 /your/dir
 	]
 }
 ```
+
+`java -DoutFormat=yaml -cp class-tool.jar JarScanner target/classes target/class-tool-1.0.0.jar`
+
+```yaml
+duplicates:
+  - class: FindClass
+    locations:
+    - /Users/zhongwen/gitlab/java-util/target/class-tool-1.0.0.jar
+      /Users/zhongwen/gitlab/java-util/target/classes/FindClass.class
+  class: JarScanner
+    locations:
+    - /Users/zhongwen/gitlab/java-util/target/class-tool-1.0.0.jar
+      /Users/zhongwen/gitlab/java-util/target/classes/JarScanner.class
+```
