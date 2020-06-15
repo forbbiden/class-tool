@@ -182,13 +182,22 @@ public class JarScanner {
             return;
         }
 
+        BufferedInputStream bis = null;
         try {
-            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+            bis = new BufferedInputStream(new FileInputStream(file));
             ClassReader classReader = new ClassReader(bis);
             String className = classReader.getClassName().replace("/", ".");
             addClass(file.getAbsolutePath(), className);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.err.println(e.getMessage());
+        } finally {
+            if (null != bis) {
+                try {
+                    bis.close();
+                } catch (IOException ignore) {
+                }
+            }
         }
     }
 
